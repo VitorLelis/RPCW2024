@@ -73,7 +73,7 @@ if response.status_code == 200:
         movie['writer']     = result.get('writer',{}).get('value','')
         movie['soundtrack'] = result.get('soundtrack',{}).get('value','')
         movie['genre']      = result.get('genre',{}).get('value','')
-        movie['length']     = result.get('length',{}).get('value','')
+        movie['length']     = abs(float(result.get('length',{}).get('value',0)))
 
         all_movies.append(movie)
 
@@ -82,5 +82,5 @@ else:
     print(response.text)
 
 f = open('movies.json', 'w')
-dump(all_movies,f)
+dump(all_movies,f,indent=4)
 f.close()
